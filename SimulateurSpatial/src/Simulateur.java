@@ -149,12 +149,12 @@ public class Simulateur {
                     case 2 -> simulateur.afficherHistorique();
                     case 3 -> afficherStatistiques(simulateur);
                     case 0 -> System.out.println("Au revoir !");
-                    default -> System.out.println("❌ Option invalide.");
+                    default -> System.out.println(" Option invalide.");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("❌ Entrée invalide, veuillez entrer un nombre.");
+                System.out.println(" Entrée invalide, veuillez entrer un nombre.");
             } catch (CarburantInsuffisantException e) {
-                System.out.println("❌ Erreur : " + e.getMessage());
+                System.out.println(" Erreur : " + e.getMessage());
             }
             System.out.println();
         }
@@ -197,7 +197,7 @@ public class Simulateur {
         if (mission == null) return;
 
         // Effectuer le lancement
-        System.out.println("\n🚀 Lancement en cours...\n");
+        System.out.println("\n Lancement en cours...\n");
         Lancement lancement = effectuerLancement(fusee, mission);
         afficherResultatLancement(lancement);
     }
@@ -222,7 +222,7 @@ public class Simulateur {
             // Erreur ignorée
         }
 
-        System.out.println("❌ Choix invalide.");
+        System.out.println(" Choix invalide.");
         return null;
     }
 
@@ -246,7 +246,7 @@ public class Simulateur {
             // Erreur ignorée
         }
 
-        System.out.println("❌ Choix invalide.");
+        System.out.println(" Choix invalide.");
         return null;
     }
 
@@ -275,10 +275,10 @@ public class Simulateur {
                     boosters.add(boostersDispo.get(choix - 1));
                     System.out.println("✓ Booster ajouté (" + boosters.size() + "/" + lanceur.getBoostersMax() + ")");
                 } else {
-                    System.out.println("❌ Choix invalide.");
+                    System.out.println(" Choix invalide.");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("❌ Entrée invalide.");
+                System.out.println(" Entrée invalide.");
             }
         }
 
@@ -306,7 +306,7 @@ public class Simulateur {
             // Erreur ignorée
         }
 
-        System.out.println("❌ Choix invalide.");
+        System.out.println("Choix invalide.");
         return null;
     }
 
@@ -326,7 +326,7 @@ public class Simulateur {
 
     private void afficherHistorique() {
         if (historique.isEmpty()) {
-            System.out.println("📋 Aucun lancement dans l'historique.");
+            System.out.println(" Aucun lancement dans l'historique.");
             return;
         }
 
