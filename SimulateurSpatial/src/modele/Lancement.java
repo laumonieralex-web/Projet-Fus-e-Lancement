@@ -31,6 +31,7 @@ public class Lancement {
     public double getCoutTotal() { return coutTotal; }
     public Mission getMission()  { return mission; }
     public Fusee getFusee()      { return fusee; }
+    public String getRaison()    { return raison; }
 
     @Override
     public String toString() {
