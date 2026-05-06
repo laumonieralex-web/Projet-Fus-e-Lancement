@@ -7,8 +7,8 @@ import lanceur.Lanceur;
 
 public class Fusee {
 
-    private  final Lanceur lanceur;
-    private  final Capsule capsule;
+    private final Lanceur lanceur;
+    private final Capsule capsule;
     private List<Booster> boosters = new ArrayList<>();
 
     // surcharge 1 — sans boosters
