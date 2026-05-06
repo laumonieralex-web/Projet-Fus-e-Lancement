@@ -5,7 +5,7 @@ import mission.Mission;
 
 public class Lancement {
 
-    private  final Fusee fusee;
+    private final Fusee fusee;
     private final Mission mission;
     private final LocalDateTime date;
     private final boolean succes;
