@@ -34,9 +34,9 @@ public class Simulateur {
             throw new CarburantInsuffisantException("Carburant insuffisant");
         }
 
-        // Vérification 2 : Masse totale acceptable
-        if (masse > fusee.getLanceur().getChargeUtileTonnes()) {
-            return creerLancement(fusee, mission, false, "Surcharge dépassée", carburant);
+        // Vérification 2 : Masse de la capsule acceptable (payload)
+        if (fusee.getCapsule().getMasseTonnes() > fusee.getLanceur().getChargeUtileTonnes()) {
+            return creerLancement(fusee, mission, false, "Surcharge de la capsule dépassée", carburant);
         }
 
         // Vérification 3 : Nombre de boosters acceptable
@@ -44,10 +44,16 @@ public class Simulateur {
             return creerLancement(fusee, mission, false, "Trop de boosters", carburant);
         }
 
-        // Vérification 4 : Compatibilité capsule-mission
-        if (mission.isHabitee() && !fusee.getCapsule().isHabitee()) {
-            return creerLancement(fusee, mission, false, 
-                "Capsule incompatible avec une mission habitée", carburant);
+        // Vérification 4 : Compatibilité mission habitée (capsule + lanceur)
+        if (mission.isHabitee()) {
+            if (!fusee.getCapsule().isHabitee()) {
+                return creerLancement(fusee, mission, false, 
+                    "Capsule incompatible avec une mission habitée", carburant);
+            }
+            if (!fusee.getLanceur().isHabite()) {
+                return creerLancement(fusee, mission, false, 
+                    "Lanceur non certifié pour le vol habité", carburant);
+            }
         }
 
         // Vérification 5 : Chance d'échec aléatoire
@@ -64,8 +70,8 @@ public class Simulateur {
      */
     private Lancement creerLancement(Fusee fusee, Mission mission, 
                                      boolean succes, String raison, double carburant) {
-        double coutCarburant = carburant * PRIX_KEROSENE_PAR_TONNE;
-        double coutTotal = fusee.calculerCoutMateriel() + coutCarburant;
+        double coutCarburantMillions = (carburant * PRIX_KEROSENE_PAR_TONNE) / 1_000_000.0;
+        double coutTotal = fusee.calculerCoutMateriel() + coutCarburantMillions;
         
         Lancement lancement = new Lancement(fusee, mission, succes, raison, coutTotal);
         historique.add(lancement);
